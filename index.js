@@ -52,10 +52,13 @@ bot.on('message', async (msg) => {
 
     }
 
+    console.log(msg?.web_app_data)
+
 });
 
 const PORT = 3000;
 app.listen(PORT, () => console.log('Сервер запустился на порту ' + PORT));
+
 app.post('/web-data', async (req, res) => {
     const { queryId, products, totalPrice } = req.body;
     console.log(req?.body);
