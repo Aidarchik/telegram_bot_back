@@ -52,7 +52,6 @@ bot.on('message', async (msg) => {
 
     }
 
-    console.log(msg?.web_app_data)
 
 });
 
