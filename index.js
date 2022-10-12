@@ -62,21 +62,21 @@ app.listen(PORT, () => console.log('Сервер запустился на по�
 app.post('/web-data', async (req, res) => {
     // const { queryId, products, totalPrice } = req.body;
     console.log(req);
-    try {
-        await bot.answerWebAppQuery(queryId, {
-            type: 'article',
-            id: queryId,
-            title: 'Успешная покупка',
-            input_message_content: { message_text: 'Поздравляем с покупкой, вы приобрели товар на сумму: ' + totalPrice }
-        });
-        return res.status(200).json({});
-    } catch (e) {
-        await bot.answerWebAppQuery(queryId, {
-            type: 'article',
-            id: queryId,
-            title: 'Не удалось приобрести товар',
-            input_message_content: { message_text: 'Не удалось приобрести товар' }
-        });
-        return res.status(500).json({});
-    }
+    // try {
+    //     await bot.answerWebAppQuery(queryId, {
+    //         type: 'article',
+    //         id: queryId,
+    //         title: 'Успешная покупка',
+    //         input_message_content: { message_text: 'Поздравляем с покупкой, вы приобрели товар на сумму: ' + totalPrice }
+    //     });
+    //     return res.status(200).json({});
+    // } catch (e) {
+    //     await bot.answerWebAppQuery(queryId, {
+    //         type: 'article',
+    //         id: queryId,
+    //         title: 'Не удалось приобрести товар',
+    //         input_message_content: { message_text: 'Не удалось приобрести товар' }
+    //     });
+    //     return res.status(500).json({});
+    // }
 });
