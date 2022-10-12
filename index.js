@@ -61,7 +61,7 @@ app.listen(PORT, () => console.log('Сервер запустился на по�
 
 app.post('/web-data', async (req, res) => {
     // const { queryId, products, totalPrice } = req.body;
-    console.log(req?.body);
+    console.log(req);
     try {
         await bot.answerWebAppQuery(queryId, {
             type: 'article',
