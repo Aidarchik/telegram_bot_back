@@ -10,7 +10,12 @@ const bot = new TelegramBot(token, { polling: true });
 const app = express();
 
 app.use(express.json());
-app.use(cors());
+
+let corsOptions = {
+    origin: [webAppUrl],
+}
+
+app.use(cors(corsOptions))
 
 // Listen for any kind of message. There are different kinds of
 // messages.
