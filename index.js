@@ -15,7 +15,7 @@ let corsOptions = {
     origin: [webAppUrl],
 }
 
-app.use(cors(corsOptions))
+app.use(cors())
 
 // Listen for any kind of message. There are different kinds of
 // messages.
