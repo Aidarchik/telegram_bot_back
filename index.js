@@ -3,7 +3,7 @@ const TelegramBot = require('node-telegram-bot-api');
 const express = require('express');
 const cors = require('cors');
 // const webAppUrl = 'https://633eca5bc6b16200b216310f--delightful-boba-ba0a21.netlify.app';
-const webAppUrl = 'https://dc64-46-146-21-53.eu.ngrok.io';
+const webAppUrl = 'http://dc64-46-146-21-53.eu.ngrok.io';
 const token = '5677851691:AAGANdpmDqhPv3yIRjeBvNMfIFMjUMWG5kQ';
 
 const bot = new TelegramBot(token, { polling: true });
