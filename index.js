@@ -10,7 +10,7 @@ const bot = new TelegramBot(token, { polling: true });
 const app = express();
 
 app.use(express.json());
-app.use(express.static('back'));
+app.use(express.static('static'));
 
 let corsOptions = {
     origin: [webAppUrl],
