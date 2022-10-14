@@ -89,4 +89,4 @@ const options = {
     cert: fs.readFileSync('./sslcert/fullchain.pem'),
     key: fs.readFileSync('./sslcert/privkey.pem')
 };
-https.createServer(options, app).listen(8443);
+https.createServer(options, app).listen(8443, () => console.log('Сервер запустился на порту 8443'));
