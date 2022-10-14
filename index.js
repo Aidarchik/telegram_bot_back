@@ -10,6 +10,7 @@ const token = '5677851691:AAGANdpmDqhPv3yIRjeBvNMfIFMjUMWG5kQ';
 
 const bot = new TelegramBot(token, { polling: true });
 const app = express();
+const eldar = express();
 
 app.use(express.json());
 app.use(cors())
@@ -82,11 +83,16 @@ app.post('/web-data', async (req, res) => {
     }
 });
 
-const PORT = 8080;
-express().listen(PORT, () => console.log('Сервер запустился на порту ' + PORT));
+eldar.get('/', (req, res) => {
+    return res.status(200).json({
+        message: 'Hello World'
+    })
 
-const options = {
-    cert: fs.readFileSync('./sslcert/fullchain.pem'),
-    key: fs.readFileSync('./sslcert/privkey.pem')
-};
-https.createServer(options, app).listen(8443, () => console.log('Сервер запустился на порту 8443'));
+    const PORT = 8080;
+    express().listen(PORT, () => console.log('Сервер запустился на порту ' + PORT));
+
+    const options = {
+        cert: fs.readFileSync('./sslcert/fullchain.pem'),
+        key: fs.readFileSync('./sslcert/privkey.pem')
+    };
+    https.createServer(options, app).listen(8443, () => console.log('Сервер запустился на порту 8443'));
