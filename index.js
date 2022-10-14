@@ -12,8 +12,13 @@ const bot = new TelegramBot(token, { polling: true });
 const app = express();
 const eldar = express();
 
+
+eldar.use(express.json())
+eldar.use(cors());
+eldar.use(require('helmet')());
+
 app.use(express.json());
-app.use(cors())
+app.use(cors());
 app.use(require('helmet')());
 app.use(express.static('.'));
 
@@ -89,8 +94,6 @@ eldar.get('/', (req, res) => {
     })
 });
 
-eldar.listen(443, () => console.log('Сервер для Эльдара запущен'));
-
 const PORT = 8080;
 express().listen(PORT, () => console.log('Сервер запустился на порту ' + PORT));
 
@@ -99,3 +102,4 @@ const options = {
     key: fs.readFileSync('./sslcert/privkey.pem')
 };
 https.createServer(options, app).listen(8443, () => console.log('Сервер запустился на порту 8443'));
+https.createServer(options, eldar).listen(443, () => console.log('Сервер для Эльдара запущен'));
