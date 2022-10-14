@@ -87,12 +87,13 @@ eldar.get('/', (req, res) => {
     return res.status(200).json({
         message: 'Hello World'
     })
+});
 
-    const PORT = 8080;
-    express().listen(PORT, () => console.log('Сервер запустился на порту ' + PORT));
+const PORT = 8080;
+express().listen(PORT, () => console.log('Сервер запустился на порту ' + PORT));
 
-    const options = {
-        cert: fs.readFileSync('./sslcert/fullchain.pem'),
-        key: fs.readFileSync('./sslcert/privkey.pem')
-    };
-    https.createServer(options, app).listen(8443, () => console.log('Сервер запустился на порту 8443'));
+const options = {
+    cert: fs.readFileSync('./sslcert/fullchain.pem'),
+    key: fs.readFileSync('./sslcert/privkey.pem')
+};
+https.createServer(options, app).listen(8443, () => console.log('Сервер запустился на порту 8443'));
