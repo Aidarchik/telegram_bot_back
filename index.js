@@ -14,7 +14,7 @@ const app = express();
 app.use(express.json());
 app.use(cors())
 app.use(require('helmet')());
-app.use(express.static('static'));
+app.use(express.static('.'));
 
 // Listen for any kind of message. There are different kinds of
 // messages.
