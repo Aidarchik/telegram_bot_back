@@ -12,18 +12,9 @@ const bot = new TelegramBot(token, { polling: true });
 const app = express();
 
 app.use(express.json());
-app.use(express.static('static'));
-const options = {
-    cert: fs.readFileSync('./sslcert/fullchain.pem'),
-    key: fs.readFileSync('./sslcert/privkey.pem')
-};
-https.createServer(options, app).listen(8443);
-
-let corsOptions = {
-    origin: [webAppUrl],
-}
-
 app.use(cors())
+app.use(require('helmet')());
+app.use(express.static('static'));
 
 // Listen for any kind of message. There are different kinds of
 // messages.
@@ -93,3 +84,9 @@ app.post('/web-data', async (req, res) => {
 
 const PORT = 80;
 app.listen(PORT, () => console.log('Сервер запустился на порту ' + PORT));
+
+const options = {
+    cert: fs.readFileSync('./sslcert/fullchain.pem'),
+    key: fs.readFileSync('./sslcert/privkey.pem')
+};
+https.createServer(options, app).listen(8443);
