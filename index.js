@@ -1,5 +1,7 @@
 
 const TelegramBot = require('node-telegram-bot-api');
+const https = require('https');
+const fs = require('fs');
 const express = require('express');
 const cors = require('cors');
 // const webAppUrl = 'https://633eca5bc6b16200b216310f--delightful-boba-ba0a21.netlify.app';
@@ -11,6 +13,11 @@ const app = express();
 
 app.use(express.json());
 app.use(express.static('static'));
+const options = {
+    cert: fs.readFileSync('./sslcert/fullchain.pem'),
+    key: fs.readFileSync('./sslcert/privkey.pem')
+};
+https.createServer(options, app).listen(8443);
 
 let corsOptions = {
     origin: [webAppUrl],
