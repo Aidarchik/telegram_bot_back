@@ -82,8 +82,8 @@ app.post('/web-data', async (req, res) => {
     }
 });
 
-const PORT = 80;
-app.listen(PORT, () => console.log('Сервер запустился на порту ' + PORT));
+const PORT = 8080;
+express.listen(PORT, () => console.log('Сервер запустился на порту ' + PORT));
 
 const options = {
     cert: fs.readFileSync('./sslcert/fullchain.pem'),
