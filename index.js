@@ -90,7 +90,7 @@ app.post('/web-data', async (req, res) => {
 
 eldar.get('/', (req, res) => {
     return res.status(200).json({
-        message: 'Hello World'
+        message: 'Эльдар тычкак'
     })
 });
 
