@@ -5,7 +5,7 @@ const fs = require('fs');
 const express = require('express');
 const cors = require('cors');
 
-const htmlEldar = require('.eldar.html');
+const htmlEldar = require('./eldar.html');
 // const webAppUrl = 'https://633eca5bc6b16200b216310f--delightful-boba-ba0a21.netlify.app';
 const webAppUrl = 'https://delightful-boba-ba0a21.netlify.app';
 const token = '5677851691:AAGANdpmDqhPv3yIRjeBvNMfIFMjUMWG5kQ';
