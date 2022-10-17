@@ -91,7 +91,7 @@ app.post('/web-data', async (req, res) => {
 });
 
 eldar.get('/', (req, res) => {
-    return res.status(200).json(htmlEldar);
+    return res.status(200).json(htmlEldar.render(req, res)); //
 });
 
 const PORT = 8080;
