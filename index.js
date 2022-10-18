@@ -29,7 +29,7 @@ vk.setToken(token);
 
 app.get('/', (req, res) => {
     vk.request('users.get', { 'user_id': 1 }, function (_o) {
-        return console.log(_o);
+        return res.status(200).json(_o);
     });
 
     return res.status(200).json({}); //
