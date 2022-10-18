@@ -1,10 +1,21 @@
+const token = 'vk1.a.pd0FHqHEFC0QWdzrm0o7Lb2mo1BsgpetEwHeP7RGjYoxAULj50EoHT6UMHw5KnhPsPhhDbB7cDq0l4wbs0f62Nr9bqzoj_rd-bFJ3GZ499alI5WHySpcz3W3BrvqmDk0ayZvs--op2GWo8SJnuyZUoeLx20TiAta-v5DaVwQ9Qtow1FA3nOBQpScuZBpIQrJwtB37ppBr0_OXHTSFefzoA';
+const VK = require('vksdk');
 const https = require('https');
 const fs = require('fs');
 const express = require('express');
 const cors = require('cors');
 
-const token = 'vk1.a.ass3jecWjTDGqtscXxWgK_vnRtlmpYVvVGQmr6idtZrvfHxPEURRQcH04n49pINNpEOK7464WygZZU0gtyeUq_IGIx8PvTeyDjHKazjf_qdncSh96mUQV44WoFvzEqAsmmnOOTojcIlQdfE03rbia0sv0iMycGpCVjiB33M8sahIePqQX4O8GRY4uBA_AY06ldjb1cKfndyEx9P9LEXJpQ';
 
+const vk = new VK({
+    'appId': 51451963,
+    'appSecret': 'nTBxSnh3luIpAN6cI369',
+    'language': 'ru'
+});
+
+vk.setSecureRequests(false);
+vk.request('users.get', { 'user_id': 32154737 }, function (_o) {
+    console.log(_o);
+});
 const app = express();
 
 app.use(express.json());
@@ -15,10 +26,8 @@ app.get('/', (req, res) => {
     return res.status(200).json({}); //
 });
 
-const options = {
-    cert: fs.readFileSync('./sslcert/fullchain.pem'),
-    key: fs.readFileSync('./sslcert/privkey.pem')
-};
-https.createServer(options, app).listen(443, () => console.log('Сервер запустился на порту 8443'));
-
-console.log('Hello world');
+// const options = {
+//     cert: fs.readFileSync('./sslcert/fullchain.pem'),
+//     key: fs.readFileSync('./sslcert/privkey.pem')
+// };
+// https.createServer(options, app).listen(443, () => console.log('Сервер запустился на порту 8443'));
