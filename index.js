@@ -11,6 +11,7 @@ const vk = new VK({
     'appSecret': 'nTBxSnh3luIpAN6cI369',
     'language': 'ru',
     'version': '5.131',
+    'https': true,
 });
 
 const app = express();
