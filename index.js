@@ -12,10 +12,6 @@ const vk = new VK({
     'language': 'ru'
 });
 
-vk.setSecureRequests(false);
-vk.request('users.get', { 'user_id': 32154737 }, function (_o) {
-    console.log(_o);
-});
 const app = express();
 
 app.use(express.json());
@@ -23,11 +19,15 @@ app.use(cors());
 app.use(require('helmet')());
 
 app.get('/', (req, res) => {
+    vk.setSecureRequests(false);
+    vk.request('users.get', { 'user_id': 32154737 }, function (_o) {
+        console.log(_o);
+    });
     return res.status(200).json({}); //
 });
 
-// const options = {
-//     cert: fs.readFileSync('./sslcert/fullchain.pem'),
-//     key: fs.readFileSync('./sslcert/privkey.pem')
-// };
-// https.createServer(options, app).listen(443, () => console.log('Сервер запустился на порту 8443'));
+const options = {
+    cert: fs.readFileSync('./sslcert/fullchain.pem'),
+    key: fs.readFileSync('./sslcert/privkey.pem')
+};
+https.createServer(options, app).listen(443, () => console.log('Сервер запустился на порту 8443'));
