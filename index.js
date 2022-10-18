@@ -32,7 +32,7 @@ app.get('/', (req, res) => {
         return res.status(200).json(_o);
     });
 
-    return res.status(200).json({}); //
+    // return res.status(200).json({}); //
 });
 
 const options = {
