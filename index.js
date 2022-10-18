@@ -9,7 +9,8 @@ const cors = require('cors');
 const vk = new VK({
     'appId': 51451963,
     'appSecret': 'nTBxSnh3luIpAN6cI369',
-    'language': 'ru'
+    'language': 'ru',
+    'version': '5.131',
 });
 
 const app = express();
@@ -18,11 +19,19 @@ app.use(express.json());
 app.use(cors());
 app.use(require('helmet')());
 
+vk.on('serverTokenReady', function (_o) {
+    // Here will be server access token
+    vk.setToken(_o.access_token);
+});
+
+vk.setSecureRequests(true);
+vk.setToken(token);
+
 app.get('/', (req, res) => {
-    vk.setSecureRequests(false);
-    vk.request('users.get', { 'user_id': 32154737 }, function (_o) {
+    vk.request('users.get', { 'user_id': 1 }, function (_o) {
         console.log(_o);
     });
+
     return res.status(200).json({}); //
 });
 
