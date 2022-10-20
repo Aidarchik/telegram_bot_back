@@ -30,15 +30,9 @@ vk.on((ctx) => {
     const message = ctx.message?.text;
     ctx.reply(message, null, markup
         .keyboard([
-            '1',
-            '2',
-            '3',
-            '4',
-            '5',
-            '6',
-            '7',
-            '8',
-            '9',
+            '1', '2', '3',
+            '4', '5', '6',
+            '7', '8', '9',
             '0',
         ], { columns: 3 })
         .oneTime(),
