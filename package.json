@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "start": "nodemon index.js",
     "pmstart": "pm2 start index.js",
@@ -15,10 +16,12 @@
     "nodemon": "^2.0.20"
   },
   "dependencies": {
+    "axios": "^1.1.3",
     "cors": "^2.8.5",
     "express": "^4.18.2",
     "helmet": "^6.0.0",
     "node-telegram-bot-api": "^0.59.0",
+    "node-vk-bot-api": "^3.5.0",
     "pm2": "^5.2.0",
     "vksdk": "^5.3.2"
   }
