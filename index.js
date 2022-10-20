@@ -17,7 +17,8 @@ app.use(helmet());
 const vk = new VK(vkOptionsElectron);
 
 vk.on((ctx) => {
-    ctx.reply(JSON.stringify(ctx));
+    const message = ctx.message?.text;
+    ctx.reply(message);
     console.log(ctx);
 });
 
