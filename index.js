@@ -35,9 +35,11 @@ vk.on((ctx) => {
             '7', '8', '9',
             '0',
         ], { columns: 3 })
-        .oneTime(),
+        // .inline()
+        // .oneTime(),
+
     );
-    console.log(ctx);
+    // console.log(ctx);
 });
 
 vk.startPolling();
