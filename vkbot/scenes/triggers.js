@@ -1,0 +1,1 @@
+export const triggers = ['sultan', 'eldar', 'aidar', 'aidar1', 'aidar2', 'aidar3'];

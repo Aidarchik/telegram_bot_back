@@ -3,14 +3,21 @@ import fs from 'fs';
 import express from 'express';
 import cors from 'cors';
 import helmet from 'helmet';
+
+import dotenv from 'dotenv';
+dotenv.config();
+
 import bodyParser from 'body-parser';
 import './vkbot/index.js';
+
 
 const app = express();
 
 app.use(express.json());
 app.use(cors());
 app.use(helmet());
+
+console.log(process.env.PORT)
 
 app.get('/', (req, res) => {
     return res.status(200).json(vk);
