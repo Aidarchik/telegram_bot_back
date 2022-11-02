@@ -23,6 +23,16 @@ app.get('/', (req, res) => {
     return res.status(200).json(vk);
 });
 
+// const tmp = {
+//     key: 'value',
+//     key2: 'value2',
+//     key3: 'value3',
+//     key4: 'value4',
+// }
+
+// for (let [key, value] of Object.entries(tmp)) {
+//     console.log(key, value);
+// }
 // const options = {
 //     cert: fs.readFileSync('./sslcert/fullchain.pem'),
 //     key: fs.readFileSync('./sslcert/privkey.pem')
