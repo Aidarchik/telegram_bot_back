@@ -21,6 +21,7 @@
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "helmet": "^6.0.0",
+    "mongoose": "^6.8.1",
     "node-telegram-bot-api": "^0.59.0",
     "node-vk-bot-api": "^3.5.0",
     "pm2": "^5.2.0",

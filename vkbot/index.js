@@ -27,6 +27,7 @@ vk.use(stage.middleware());
 
 vk.command(triggers, (ctx) => {
     const text = ctx.message.text;
+    console.log(ctx)
     if (triggers.includes(text)) {
         ctx.scene.enter(text);
     }
