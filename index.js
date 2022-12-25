@@ -28,14 +28,10 @@ app.use(fileUpload({}))
 app.use('/api', router)
 
 
-try {
-    const options = {
-        cert: fs.readFileSync('/etc/letsencrypt/live/sushilike159.ru/fullchain.pem'),
-        key: fs.readFileSync('/etc/letsencrypt/live/sushilike159.ru/privkey.pem')
-    };
-} catch (e) {
-    console.log(e)
-}
+const options = {
+    cert: fs.readFileSync('/etc/letsencrypt/live/sushilike159.ru/fullchain.pem'),
+    key: fs.readFileSync('/etc/letsencrypt/live/sushilike159.ru/privkey.pem')
+};
 
 
 async function startApp() {
