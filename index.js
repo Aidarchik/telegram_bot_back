@@ -28,22 +28,22 @@ app.use(fileUpload({}))
 app.use('/api', router)
 
 
-// try {
-//     const options = {
-//         cert: fs.readFileSync('./sslcert/fullchain.pem'),
-//         key: fs.readFileSync('./sslcert/privkey.pem')
-//     };
-// } catch (e) {
-//     console.log(e)
-// }
+try {
+    const options = {
+        cert: fs.readFileSync('/etc/letsencrypt/live/sushilike159.ru/fullchain.pem'),
+        key: fs.readFileSync('/etc/letsencrypt/live/sushilike159.ru/privkey.pem')
+    };
+} catch (e) {
+    console.log(e)
+}
 
 
 async function startApp() {
     try {
         mongoose.set('strictQuery', false)
         await mongoose.connect(DB_URL)
-        app.listen(PORT, () => { console.log(`server started on PORT ${PORT}`) })
-        // https.createServer(options, app).listen(PORT, () => console.log(`Сервер запустился на порту ${PORT}`));
+        // app.listen(PORT, () => { console.log(`server started on PORT ${PORT}`) })
+        https.createServer(options, app).listen(PORT, () => console.log(`Сервер запустился на порту ${PORT}`));
     } catch (e) {
         console.log(e)
     }
