@@ -1,5 +1,5 @@
 import https from 'https';
-// import fs from 'fs';
+import fs from 'fs';
 import express from 'express';
 import cors from 'cors';
 import helmet from 'helmet';
@@ -23,14 +23,27 @@ app.use(express.json());
 app.use(cors());
 app.use(helmet());
 app.use('/images', express.static('static'));
+app.use(express.static('sertBot'));
 app.use(fileUpload({}))
 app.use('/api', router)
+
+
+// try {
+//     const options = {
+//         cert: fs.readFileSync('./sslcert/fullchain.pem'),
+//         key: fs.readFileSync('./sslcert/privkey.pem')
+//     };
+// } catch (e) {
+//     console.log(e)
+// }
+
 
 async function startApp() {
     try {
         mongoose.set('strictQuery', false)
         await mongoose.connect(DB_URL)
         app.listen(PORT, () => { console.log(`server started on PORT ${PORT}`) })
+        // https.createServer(options, app).listen(PORT, () => console.log(`Сервер запустился на порту ${PORT}`));
     } catch (e) {
         console.log(e)
     }
@@ -48,8 +61,3 @@ startApp();
 // for (let [key, value] of Object.entries(tmp)) {
 //     console.log(key, value);
 // }
-// const options = {
-//     cert: fs.readFileSync('./sslcert/fullchain.pem'),
-//     key: fs.readFileSync('./sslcert/privkey.pem')
-// };
-// https.createServer(options, app).listen(443, () => console.log('Сервер запустился на порту 8443'));
