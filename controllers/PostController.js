@@ -14,7 +14,7 @@ class PostController {
     async getAll(req, res) {
         try {
             const posts = await PostService.getAll()
-            res.status(200).json(posts);
+            res.status(200).json({ message: posts });
         } catch (e) {
             res.status(500).json(e.message)
         }
