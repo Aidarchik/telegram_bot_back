@@ -29,18 +29,18 @@ app.use(fileUpload({}))
 app.use('/api', router)
 
 
-// const options = {
-//     cert: fs.readFileSync('/etc/letsencrypt/live/sushilike159.ru/fullchain.pem'),
-//     key: fs.readFileSync('/etc/letsencrypt/live/sushilike159.ru/privkey.pem')
-// };
+const options = {
+    cert: fs.readFileSync('/etc/letsencrypt/live/sushilike159.ru/fullchain.pem'),
+    key: fs.readFileSync('/etc/letsencrypt/live/sushilike159.ru/privkey.pem')
+};
 
 
 async function startApp() {
     try {
         mongoose.set('strictQuery', false)
         await mongoose.connect(DB_URL)
-        app.listen(LOCALPORT, () => { console.log(`server started on PORT ${LOCALPORT}`) })
-        // https.createServer(options, app).listen(PORT, () => console.log(`Сервер запустился на порту ${PORT}`));
+        // app.listen(LOCALPORT, () => { console.log(`server started on PORT ${LOCALPORT}`) })
+        https.createServer(options, app).listen(PORT, () => console.log(`Сервер запустился на порту ${PORT}`));
     } catch (e) {
         console.log(e)
     }
