@@ -7,8 +7,8 @@
   "scripts": {
     "start": "nodemon index.js",
     "vk": "nodemon ./vkbot/index.js",
-    "pmstart": "pm2 start index.js",
-    "pmstop": "pm2 stop index.js"
+    "pmstop": "pm2 stop index.js",
+    "pmstart": "pm2 start index.js"
   },
   "keywords": [],
   "author": "",
