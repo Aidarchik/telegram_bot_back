@@ -13,13 +13,13 @@ import mongoose from 'mongoose';
 import router from './router.js';
 import fileUpload from 'express-fileupload';
 
-const DB_URL = "mongodb://root:example@localhost:27017/"
+const DB_URL = process.env.DB_URL
 const PORT = process.env.PORT || 443
 const LOCALPORT = process.env.LOCALPORT || 5000
 
 const app = express();
 
-app.use(express.json());
+app.use(express.json({ extended: true }));
 app.use(cors());
 app.use(helmet({ crossOriginResourcePolicy: false }));
 app.use('/images', express.static('static'));
@@ -28,18 +28,18 @@ app.use(fileUpload({}))
 app.use('/api', router)
 
 
-const options = {
-    cert: fs.readFileSync('/etc/letsencrypt/live/sushilike159.ru/fullchain.pem'),
-    key: fs.readFileSync('/etc/letsencrypt/live/sushilike159.ru/privkey.pem')
-};
+// const options = {
+//     cert: fs.readFileSync('/etc/letsencrypt/live/sushilike159.ru/fullchain.pem'),
+//     key: fs.readFileSync('/etc/letsencrypt/live/sushilike159.ru/privkey.pem')
+// };
 
 
 async function startApp() {
     try {
         mongoose.set('strictQuery', false)
         await mongoose.connect(DB_URL)
-        // app.listen(LOCALPORT, () => { console.log(`server started on PORT ${LOCALPORT}`) })
-        https.createServer(options, app).listen(PORT, () => console.log(`Сервер запустился на порту ${PORT}`));
+        app.listen(LOCALPORT, () => { console.log(`server started on PORT ${LOCALPORT}`) })
+        // https.createServer(options, app).listen(PORT, () => console.log(`Сервер запустился на порту ${PORT}`));
     } catch (e) {
         console.log(e)
     }
