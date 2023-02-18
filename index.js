@@ -33,7 +33,8 @@ app.use(helmet({ crossOriginResourcePolicy: false }));
 app.use('/images', express.static('static'));
 app.use(express.static('sertBot'));
 app.use(fileUpload({}))
-app.use('/api', passport.authenticate('vkontakte'), postsRouter)
+app.use('/api', postsRouter)
+// , passport.authenticate('vkontakte')
 app.use('/api/auth', authRoutes)
 app.get('/api/auth/vkontakte/callback', (req, res) => {
     res.status(200).json({ message: "хохохо" });
