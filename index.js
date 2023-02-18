@@ -36,7 +36,7 @@ app.use(fileUpload({}))
 app.use('/api', passport.authenticate('vkontakte'), postsRouter)
 app.use('/api/auth', authRoutes)
 app.get('/api/auth/vkontakte/callback', (req, res) => {
-    console.log(req);
+    res.status(200).json({ message: "хохохо" });
 })
 
 
