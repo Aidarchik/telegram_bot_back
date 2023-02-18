@@ -23,7 +23,7 @@ const LOCALPORT = process.env.LOCALPORT || 5000
 
 const app = express();
 
-// app.use(passport.initialize())
+app.use(passport.initialize())
 passportJWT(passport)
 passportVkontakte(passport)
 
@@ -31,9 +31,10 @@ app.use(express.json({ extended: true }));
 app.use(cors());
 app.use(helmet({ crossOriginResourcePolicy: false }));
 app.use('/images', express.static('static'));
+app.use('/', express.static('../sushilike159/build/index.html'))
 app.use(express.static('sertBot'));
 app.use(fileUpload({}))
-app.use('/api', passport.authenticate('vkontakte'), postsRouter)
+app.use('/api', postsRouter)
 app.use('/api/auth', authRoutes)
 app.get('/api/auth/vkontakte/callback', (req, res) => {
     res.status(200).json({ message: "хохохо" });
