@@ -27,11 +27,11 @@ app.use(passport.initialize())
 passportJWT(passport)
 passportVkontakte(passport)
 
+app.use('/', express.static('./../sushilike159/build/'))
 app.use(express.json({ extended: true }));
 app.use(cors());
 app.use(helmet({ crossOriginResourcePolicy: false }));
 app.use('/images', express.static('static'));
-app.use('/', express.static('./../sushilike159/build/'))
 app.use(express.static('sertBot'));
 app.use(fileUpload({}))
 app.use('/api', postsRouter)
