@@ -51,7 +51,7 @@ async function startApp() {
         mongoose.set('strictQuery', false)
         await mongoose.connect(DB_URL)
         // app.listen(LOCALPORT, () => { console.log(`server started on PORT ${LOCALPORT}`) })
-        https.createServer(options, app).listen(PORT, () => console.log(`Сервер запустился на порту f[f] ${PORT}`));
+        https.createServer(options, app).listen(PORT, () => console.log(`Сервер запустился на порту ${PORT}`));
     } catch (e) {
         console.log(e)
     }
