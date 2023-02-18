@@ -35,6 +35,9 @@ app.use(express.static('sertBot'));
 app.use(fileUpload({}))
 app.use('/api', passport.authenticate('vkontakte', { session: false }), postsRouter)
 app.use('/api/auth', authRoutes)
+app.get('/api/auth/vkontakte/callback', (req, res) => {
+    console.log(req);
+})
 
 
 const options = {
