@@ -2,10 +2,14 @@ import { VK, Keyboard } from 'vk-io';
 import dotenv from 'dotenv';
 import { template } from './template.js';
 import { photoLoad } from './photoLoad.js';
+import fetch from 'node-fetch';
 dotenv.config();
 
 const vk = new VK({
     token: process.env.VK_TOKEN
+})
+const vk1 = new VK({
+    token: process.env.VK_TOKEN_APP
 })
 
 const attachment = async (source) => {
@@ -17,7 +21,7 @@ const attachment = async (source) => {
 }
 
 vk.updates.on('message', async (context, next) => {
-    // console.log(context);
+    console.log(context);
     if (context.text === 'Привет') {
         await context.send('Привет!');
     }
@@ -43,6 +47,7 @@ vk.updates.on('message', async (context, next) => {
                         command: 'menu'
                     }
                 }),
+            message: 'Пока',
             attachment
         })
     }
@@ -60,12 +65,14 @@ vk.updates.on('message', async (context, next) => {
 vk.updates.on('message', async (context, next) => {
     // console.log(context)
     try {
+        // console.log(await vk.api.photos.get({ owner_id: -162905926, album_id: 292858997 }));
         if (context.attachments[0]?.largeSizeUrl) {
             const res = await photoLoad(context.attachments[0].largeSizeUrl, './vkbot/static/resize.jpg')
             if (res) {
                 const uploadPhoto = await attachment('./vkbot/static/resize.jpg')
                 if (uploadPhoto) {
-                    context.uploadPhotoId = `${uploadPhoto.ownerId}_${uploadPhoto.id}`
+                    context.uploadPhotoId = '-162905926_457239588'
+                    // context.uploadPhotoId = `${uploadPhoto.ownerId}_${uploadPhoto.id}`
                     context.uploadPhoto = uploadPhoto
                 }
             }
@@ -94,15 +101,8 @@ vk.updates.on('message', async (context, next) => {
                         template(context.uploadPhotoId),
                         template(context.uploadPhotoId),
                         template(context.uploadPhotoId)
-                        // JSON.stringify(template(context.uploadPhotoId)),
-                        // JSON.stringify(template(context.uploadPhotoId)),
-                        // JSON.stringify(template(context.uploadPhotoId)),
-                        // JSON.stringify(template(context.uploadPhotoId)),
-                        // JSON.stringify(template(context.uploadPhotoId)),
-                        // JSON.stringify(template(context.uploadPhotoId)),
-                        // JSON.stringify(template(context.uploadPhotoId))
                     ]
-                })
+                }),
             })
                 .then(() => context.uploadPhotoId = undefined)
         }
@@ -125,6 +125,16 @@ vk.updates.on('message_event', async (context, next) => {
     }
     return next()
 })
+
+// const res = await vk1.api.photos.get({ owner_id: 95179968, album_id: 243739641 })
+const res = await vk1.api.groups.get({ filter: 'groups', user_id: 139189166 })
+// const res = await vk1.api.photos.editAlbum({ title: 'Разное', owner_id: -162905926, album_id: 292865053 })
+// const res = await vk1.api.photos.editAlbum({ title: 'Разное', owner_id: -162905926, album_id: 292865053 })
+// const res = await fetch(`https://api.vk.com/method/photos.get?access_token=${process.env.VK_TOKEN}&owner_id=-162905926&album_id=292858997&v=5.131`)
+// const res1 = await fetch('https://oauth.vk.com/authorize?client_id=51451963&display=page&redirect_uri=https://oauth.vk.com/blank.html&scope=friends,photos,audio,video,stories,status,notes&response_type=token&v=5.52')
+for (let item of res.items) {
+    console.log(`https://vk.com/club${item}`);
+}
 
 
 await vk.updates.start();

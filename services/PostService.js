@@ -1,4 +1,4 @@
-import Post from "./Post.js";
+import Post from "../model/Post.js";
 import fileService from "../fileService.js";
 
 class PostService {

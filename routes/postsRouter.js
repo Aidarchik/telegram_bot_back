@@ -1,5 +1,6 @@
 import Router from "express";
-import PostController from "./controllers/PostController.js";
+import passport from "passport";
+import PostController from "../controllers/PostController.js";
 const router = new Router()
 
 router.post('/posts', PostController.create)
