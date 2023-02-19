@@ -35,12 +35,14 @@ app.use(express.static('sertBot'));
 app.use(fileUpload({}))
 app.use('/', postsRouter)
 app.use('/auth', authRoutes)
+app.get('/vk', passport('vkontakte'))
 app.get('/auth/vkontakte/callback',
     passport.authenticate("vkontakte", {
         successRedirect: '/',
         failureRedirect: '/login',
     })
 )
+
 
 
 // const options = {

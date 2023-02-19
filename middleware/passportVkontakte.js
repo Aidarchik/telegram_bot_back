@@ -10,8 +10,8 @@ export default function (passport) {
     }
 
     const verify = async (accessToken, refreshToken, params, profile, done) => {
-        const user = await User.findOrCreate({ vkontakteId: profile.id })
-        console.log(user);
+        // const user = await User.findOne({ vkontakteId: profile.id })
+        console.log(profile);
         try {
             if (user) {
                 done(null, user) //Первый параметр это ошибка, второй наши данные
