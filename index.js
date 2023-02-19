@@ -35,23 +35,26 @@ app.use(express.static('sertBot'));
 app.use(fileUpload({}))
 app.use('/api', postsRouter)
 app.use('/api/auth', authRoutes)
-app.get('/api/auth/vkontakte/callback', (req, res) => {
-    res.status(200).json({ message: "хохохо" });
-})
+app.get('/api/auth/vkontakte/callback',
+    passport.authenticate("vkontakte", {
+        successRedirect: '/',
+        failureRedirect: '/login',
+    })
+)
 
 
-const options = {
-    cert: fs.readFileSync('/etc/letsencrypt/live/sushilike159.ru/fullchain.pem'),
-    key: fs.readFileSync('/etc/letsencrypt/live/sushilike159.ru/privkey.pem')
-};
+// const options = {
+//     cert: fs.readFileSync('/etc/letsencrypt/live/sushilike159.ru/fullchain.pem'),
+//     key: fs.readFileSync('/etc/letsencrypt/live/sushilike159.ru/privkey.pem')
+// };
 
 
 async function startApp() {
     try {
         mongoose.set('strictQuery', false)
         await mongoose.connect(DB_URL)
-        // app.listen(LOCALPORT, () => { console.log(`server started on PORT ${LOCALPORT}`) })
-        https.createServer(options, app).listen(PORT, () => console.log(`Сервер запустился на порту ${PORT}`));
+        app.listen(LOCALPORT, () => { console.log(`server started on PORT ${LOCALPORT}`) })
+        // https.createServer(options, app).listen(PORT, () => console.log(`Сервер запустился на порту ${PORT}`));
     } catch (e) {
         console.log(e)
     }

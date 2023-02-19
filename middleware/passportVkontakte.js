@@ -9,19 +9,19 @@ export default function (passport) {
         callbackURL: process.env.CALLBACK_URL,
     }
 
-    passport.use(
-        new Strategy(options, async (accessToken, refreshToken, params, profile, done) => {
-            const user = await User.findOrCreate({ vkontakteId: profile.id })
-            console.log(user);
-            try {
-                if (user) {
-                    done(null, user) //Первый параметр это ошибка, второй наши данные
-                } else {
-                    done(null, false) //Пользователь не найден, поэтому не будем добавлять никаких данных к запросам
-                }
-            } catch (error) {
-                console.log(error);
+    const verify = async (accessToken, refreshToken, params, profile, done) => {
+        const user = await User.findOrCreate({ vkontakteId: profile.id })
+        console.log(user);
+        try {
+            if (user) {
+                done(null, user) //Первый параметр это ошибка, второй наши данные
+            } else {
+                done(null, false) //Пользователь не найден, поэтому не будем добавлять никаких данных к запросам
             }
-        })
-    )
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    passport.use(new Strategy(options, verify))
 }
