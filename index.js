@@ -33,9 +33,9 @@ app.use(helmet({ crossOriginResourcePolicy: false }));
 app.use('/images', express.static('static'));
 app.use(express.static('sertBot'));
 app.use(fileUpload({}))
-app.use('/api', postsRouter)
-app.use('/api/auth', authRoutes)
-app.get('/api/auth/vkontakte/callback',
+app.use('/', postsRouter)
+app.use('/auth', authRoutes)
+app.get('/auth/vkontakte/callback',
     passport.authenticate("vkontakte", {
         successRedirect: '/',
         failureRedirect: '/login',
