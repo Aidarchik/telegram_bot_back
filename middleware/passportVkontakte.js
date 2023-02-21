@@ -11,7 +11,8 @@ const passportVkontakte = (passport) => {
 
     const verify = async (accessToken, refreshToken, params, profile, done) => {
         // const user = await User.findOne({ vkontakteId: profile.id })
-        console.log(profile);
+        console.log(accessToken);
+        console.log(refreshToken);
         done(null, profile)
         // try {
         //     if (user) {
@@ -25,6 +26,7 @@ const passportVkontakte = (passport) => {
     }
 
     passport.use(new Strategy(options, verify))
+
     passport.serializeUser((user, done) => {
         console.log(user);
         done(null, user)
