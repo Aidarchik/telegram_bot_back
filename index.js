@@ -32,6 +32,7 @@ app.use(cookieSession({
 app.use(passport.initialize())
 app.use(passport.session())
 passportJWT(passport)
+passportVkontakte(passport)
 
 app.use(express.json({ extended: true }));
 app.use(cors({

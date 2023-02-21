@@ -1,8 +1,7 @@
-import passport from 'passport';
 import { Strategy } from 'passport-vkontakte'
 import User from '../model/User.js'
 
-const passportVkontakte = () => {
+const passportVkontakte = (passport) => {
 
     const options = {
         clientID: process.env.CLIENT_ID,
