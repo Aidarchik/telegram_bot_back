@@ -36,7 +36,8 @@ router.get('/logout', (req, res) => {
 })
 
 router.get('/vk', passport.authorize('vkontakte', {
-    scope: ['groups', 'friends', 'photos',]
+    scope: ['groups', 'friends', 'photos',],
+    session: true
 }))
 
 router.get('/vkontakte/callback',
