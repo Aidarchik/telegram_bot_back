@@ -1,6 +1,8 @@
 import Router from "express";
 import controller from "../controllers/AuthController.js";
 import passport from "passport";
+import dotenv from 'dotenv';
+dotenv.config();
 const router = new Router()
 
 router.post('/login', controller.login)
