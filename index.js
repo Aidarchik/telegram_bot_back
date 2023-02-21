@@ -25,7 +25,7 @@ const LOCALPORT = process.env.LOCALPORT || 5000
 const app = express();
 
 app.use(session({
-    secret: process.env.COOKIE_SESSION_KEY,
+    secret: 'somethingsecretgoeshere',
     resave: false,
     saveUninitialized: true,
     cookie: { secure: true }
