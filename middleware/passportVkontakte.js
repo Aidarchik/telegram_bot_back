@@ -13,7 +13,7 @@ const passportVkontakte = (passport) => {
         // const user = await User.findOne({ vkontakteId: profile.id })
         console.log(accessToken);
         console.log(refreshToken);
-        done(null, profile)
+        done(null, refreshToken)
         // try {
         //     if (user) {
         //         done(null, user) //Первый параметр это ошибка, второй наши данные
