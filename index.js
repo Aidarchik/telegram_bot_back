@@ -16,7 +16,7 @@ import mongoose from 'mongoose';
 import postsRouter from './routes/postsRouter.js';
 import authRoutes from './routes/authRouter.js';
 import fileUpload from 'express-fileupload';
-import session from 'express-session';
+import cookieSession from 'cookie-session';
 
 const DB_URL = process.env.DB_URL
 const PORT = process.env.PORT || 443
@@ -24,11 +24,10 @@ const LOCALPORT = process.env.LOCALPORT || 5000
 
 const app = express();
 
-app.use(session({
-    secret: 'somethingsecretgoeshere',
-    resave: false,
-    saveUninitialized: true,
-    cookie: { secure: true }
+app.use(cookieSession({
+    name: 'session',
+    keys: [process.env.COOKIE_SESSION_KEYS],
+    maxAge: 24 * 60 * 60 * 100,
 }))
 app.use(passport.initialize())
 app.use(passport.session())
