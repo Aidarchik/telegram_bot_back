@@ -24,6 +24,7 @@ const passportVkontakte = (passport) => {
         // }
     }
 
+    passport.use(new Strategy(options, verify))
     passport.serializeUser((user, done) => {
         console.log(user);
         done(null, user)
@@ -33,7 +34,6 @@ const passportVkontakte = (passport) => {
         done(null, user)
     })
 
-    passport.use(new Strategy(options, verify))
 }
 
 export default passportVkontakte
