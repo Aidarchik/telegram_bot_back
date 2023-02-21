@@ -44,6 +44,8 @@ router.get('/vkontakte/callback',
     passport.authenticate("vkontakte", {
         successRedirect: process.env.CLIENT_URL,
         failureRedirect: '/login/failed',
+        session: false
+    }))
     })
 )
 
