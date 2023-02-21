@@ -35,7 +35,7 @@ router.get('/logout', (req, res) => {
     res.redirect(process.env.CLIENT_URL)
 })
 
-router.get('/vk', passport.authenticate('vkontakte', {
+router.get('/vk', passport.authorize('vkontakte', {
     scope: ['groups', 'friends', 'photos',]
 }))
 
