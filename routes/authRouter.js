@@ -19,7 +19,8 @@ router.get('/login/success', (req, res) => {
 
         })
     }
-    res.redirect('https://sushilike159.ru/api/auth/login/failed')
+    // res.redirect('https://sushilike159.ru/api/auth/login/failed')
+    res.status(200).json(req)
 })
 
 router.get('/login/failed', (req, res) => {
