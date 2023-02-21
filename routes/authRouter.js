@@ -20,7 +20,7 @@ router.get('/login/success', (req, res) => {
         })
     }
     // res.redirect('https://sushilike159.ru/api/auth/login/failed')
-    res.send(req)
+    res.send(req.isAuthenticated())
 })
 
 router.get('/login/failed', (req, res) => {
