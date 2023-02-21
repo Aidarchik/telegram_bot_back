@@ -16,6 +16,7 @@ import mongoose from 'mongoose';
 import postsRouter from './routes/postsRouter.js';
 import authRoutes from './routes/authRouter.js';
 import fileUpload from 'express-fileupload';
+import cookieSession from 'cookie-session';
 
 const DB_URL = process.env.DB_URL
 const PORT = process.env.PORT || 443
@@ -23,25 +24,28 @@ const LOCALPORT = process.env.LOCALPORT || 5000
 
 const app = express();
 
+app.use(cookieSession({
+    name: 'session',
+    keys: [process.env.COOKIE_SESSION_KEYS],
+    maxAge: 24 * 60 * 60 * 100,
+}))
 app.use(passport.initialize())
+app.use(passport.session())
 passportJWT(passport)
-passportVkontakte(passport)
 
 app.use(express.json({ extended: true }));
-app.use(cors());
+app.use(cors({
+    origin: 'http://localhost:3000',
+    methods: 'GET,POST,PUT,DELETE',
+    credentials: true //учетные данные
+}));
 app.use(helmet({ crossOriginResourcePolicy: false }));
 app.use('/images', express.static('static'));
 app.use(express.static('sertBot'));
 app.use(fileUpload({}))
 app.use('/', postsRouter)
 app.use('/auth', authRoutes)
-app.get('/vk', passport.authorize('vkontakte'))
-app.get('/auth/vkontakte/callback',
-    passport.authenticate("vkontakte", {
-        successRedirect: '/',
-        failureRedirect: '/login',
-    })
-)
+
 
 
 
