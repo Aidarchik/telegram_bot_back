@@ -5,6 +5,8 @@ import { photoLoad } from './photoLoad.js';
 import fetch from 'node-fetch';
 dotenv.config();
 
+
+
 const vk = new VK({
     token: process.env.VK_TOKEN
 })
@@ -20,6 +22,28 @@ const attachment = async (source) => {
     })
 }
 
+const keyboard = Keyboard
+    .builder()
+    .inline()
+    .urlButton({
+        label: 'View on site',
+        url: 'https://sushilike159.netlify.app/'
+    })
+    .callbackButton({
+        label: 'Buy a coffee',
+        payload: {
+            command: 'buy',
+            item: 'coffee'
+        }
+    })
+    .row()
+    .textButton({
+        label: 'Показать меню',
+        payload: {
+            command: 'menu'
+        }
+    })
+
 vk.updates.on('message', async (context, next) => {
     console.log(context);
     if (context.text === 'Привет') {
@@ -28,26 +52,7 @@ vk.updates.on('message', async (context, next) => {
     if (context.text === 'Кнопки') {
         await context.send({
             message: 'Hey!',
-            keyboard: Keyboard.builder().inline()
-                .urlButton({
-                    label: 'View on site',
-                    url: 'https://sushilike159.netlify.app/'
-                })
-                .callbackButton({
-                    label: 'Buy a coffee',
-                    payload: {
-                        command: 'buy',
-                        item: 'coffee'
-                    }
-                })
-                .row()
-                .textButton({
-                    label: 'Показать меню',
-                    payload: {
-                        command: 'menu'
-                    }
-                }),
-            message: 'Пока',
+            keyboard,
             attachment
         })
     }
@@ -127,14 +132,15 @@ vk.updates.on('message_event', async (context, next) => {
 })
 
 // const res = await vk1.api.photos.get({ owner_id: 95179968, album_id: 243739641 })
-const res = await vk1.api.groups.get({ filter: 'groups', user_id: 139189166 })
+// const res = await vk1.api.groups.get({ filter: 'groups', user_id: 139189166 })
 // const res = await vk1.api.photos.editAlbum({ title: 'Разное', owner_id: -162905926, album_id: 292865053 })
 // const res = await vk1.api.photos.editAlbum({ title: 'Разное', owner_id: -162905926, album_id: 292865053 })
 // const res = await fetch(`https://api.vk.com/method/photos.get?access_token=${process.env.VK_TOKEN}&owner_id=-162905926&album_id=292858997&v=5.131`)
 // const res1 = await fetch('https://oauth.vk.com/authorize?client_id=51451963&display=page&redirect_uri=https://oauth.vk.com/blank.html&scope=friends,photos,audio,video,stories,status,notes&response_type=token&v=5.52')
-for (let item of res.items) {
-    console.log(`https://vk.com/club${item}`);
-}
+// for (let item of res.items) {
+//     console.log(`https://vk.com/club${item}`);
+// }
 
 
 await vk.updates.start();
+
