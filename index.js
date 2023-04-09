@@ -42,10 +42,10 @@ app.use(cors({
 }));
 app.use(helmet({ crossOriginResourcePolicy: false }));
 app.use('/images', express.static('static'));
-app.use(express.static('sertBot'));
 app.use(fileUpload({}))
 app.use('/', postsRouter)
 app.use('/auth', authRoutes)
+
 
 
 
