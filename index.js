@@ -41,7 +41,7 @@ app.use(
   cors({
     origin: "http://localhost:5000/",
     methods: "GET,POST,PUT,DELETE",
-    credentials: true, //учетные данные
+    credentials: false, //учетные данные
   })
 );
 app.use(helmet({ crossOriginResourcePolicy: false }));
