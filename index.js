@@ -24,26 +24,26 @@ const LOCALPORT = process.env.LOCALPORT || 5000;
 
 const app = express();
 
-app.use(
-  cookieSession({
-    name: "session",
-    keys: [process.env.COOKIE_SESSION_KEYS],
-    maxAge: 24 * 60 * 60 * 100,
-  })
-);
-app.use(passport.initialize());
-app.use(passport.session());
-passportJWT(passport);
-passportVkontakte(passport);
+// app.use(
+//   cookieSession({
+//     name: "session",
+//     keys: [process.env.COOKIE_SESSION_KEYS],
+//     maxAge: 24 * 60 * 60 * 100,
+//   })
+// );
+// app.use(passport.initialize());
+// app.use(passport.session());
+// passportJWT(passport);
+// passportVkontakte(passport);
 
 app.use(express.json({ extended: true }));
-app.use(
-  cors({
-    origin: "*",
-    methods: "GET,POST,PUT,DELETE",
-    credentials: false, //учетные данные
-  })
-);
+// app.use(
+//   cors({
+//     origin: "*",
+//     methods: "GET,POST,PUT,DELETE",
+//     credentials: false, //учетные данные
+//   })
+// );
 app.use(helmet({ crossOriginResourcePolicy: false }));
 app.use("/images", express.static("static"));
 app.use(fileUpload({}));
