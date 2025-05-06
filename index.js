@@ -39,7 +39,7 @@ passportVkontakte(passport);
 app.use(express.json({ extended: true }));
 app.use(
   cors({
-    origin: "45.141.234.48:5000",
+    origin: "*f",
     methods: "GET,POST,PUT,DELETE",
     credentials: false, //учетные данные
   })
