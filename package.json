@@ -5,10 +5,13 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "start": "nodemon index.js",
+    "start": "nodemon -L index.js",
     "vk": "nodemon ./vkbot/index.js",
     "pmstop": "pm2 stop index.js",
-    "pmstart": "pm2 start index.js"
+    "pmstart": "pm2 start index.js",
+    "list": "pm2 list",
+    "delete": "pm2 delete all",
+    "monit": "pm2 monit"
   },
   "keywords": [],
   "author": "",

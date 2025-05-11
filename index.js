@@ -15,6 +15,7 @@ dotenv.config();
 import mongoose from "mongoose";
 import postsRouter from "./routes/postsRouter.js";
 import authRoutes from "./routes/authRouter.js";
+import pmRoutes from "./routes/pmRouter.js";
 import fileUpload from "express-fileupload";
 import cookieSession from "cookie-session";
 
@@ -49,6 +50,7 @@ app.use("/images", express.static("static"));
 app.use(fileUpload({}));
 app.use("/", postsRouter);
 app.use("/auth", authRoutes);
+app.use("/pm", pmRoutes);
 
 // const options = {
 //     cert: fs.readFileSync('/etc/letsencrypt/live/sushilike159.ru/fullchain.pem'),
